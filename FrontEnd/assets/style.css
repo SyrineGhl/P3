@@ -53,6 +53,7 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background: rgba(255, 254, 248, 1)
 }
 header {
 	display: flex;
@@ -98,6 +99,9 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+}
+#logo_insta{
+	width: 65%;
 }
 #introduction {
 	display: flex;
@@ -230,3 +234,5 @@ footer nav ul {
 	font-weight: bold;
 	padding-top: 20px;
 }
+
+

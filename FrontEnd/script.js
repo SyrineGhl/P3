@@ -75,7 +75,7 @@ function deleteWorks(deleteProject) {
    console.log(gallery);
 
    //suppression de tout les enfants de cet élément (boucle WHILE)
-  
+
    while (gallery.hasChildNodes()) {
       gallery.removeChild(gallery.firstChild);
    }
@@ -182,7 +182,7 @@ function displayButton() {
          let buttonAll = document.createElement("button");
          buttonAll.innerText = "Tous";
          buttonAll.setAttribute('id', 'btn-filtre-0');
-         buttonAll.value = 0 ;
+         buttonAll.value = 0;
          buttonAll.addEventListener("click", function (event) {});
          buttonAll.style.fontFamily = 'Syne';
          buttonAll.style.fontSize = '16px';
@@ -223,7 +223,7 @@ function displayButton() {
                displayWorks(event.target.value);
             });
             // style css aux boutons
-            
+
             otherButton.style.border = '1px solid #1D6154';
             otherButton.style.fontSize = '16px';
             otherButton.style.width = 'fit-content';
@@ -234,7 +234,7 @@ function displayButton() {
             otherButton.style.backgroundColor = '#FFFEF8';
             otherButton.style.fontWeight = '700';
             otherButton.style.padding = '8px 20px';
-            // style lors du survol
+            // css lors du survol
             otherButton.addEventListener("mouseover", function (event) {
                event.target.style.color = '#FFFFFF';
                event.target.style.textDecoration = 'none';
