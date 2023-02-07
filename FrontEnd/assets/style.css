@@ -22,6 +22,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	text-decoration: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -163,6 +164,7 @@ li:hover {
 	width: 100%;
 
 }
+/** FORM **/
 #contact {
 	width: 50%;
 margin: auto;
@@ -212,3 +214,19 @@ footer nav ul {
 	margin: 2em
 }
 
+/* forgotten password */
+
+.password-forgot {
+	background: none;
+	border: none;
+	text-decoration: underline;
+}
+
+/* incorrect password */
+
+.error {
+	color: #D65353;
+	font-size: 20px;
+	font-weight: bold;
+	padding-top: 20px;
+}

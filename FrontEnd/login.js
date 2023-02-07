@@ -1,54 +1,48 @@
-//Page de connexion
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const error = document.getElementById("error");
-const valid = document.getElementById("login-form-submit");
-const form = document.getElementById("login-form");
-
-form.addEventListener("submit", function (e) {
-   e.preventDefault();
-
-   //recupere les inputs
-   const information = new FormData(form);
-   const payload = new URLSearchParams(information);
+//recuperation des elements form 
+const form = document.querySelector("form");
+const btnSubmit = document.querySelector(".btn-fetch");
+const error = document.querySelector(".error");
+const email = document.querySelector("#email");
+const password = document.querySelector("#password");
 
 
-   fetch("http://localhost:5678/api/users/login", {
-         method: "POST",
-         headers: {
-            accept: "application/json",
-         },
 
-         body: payload,
-      })
-      .then((res) => res.json())
-      .then((data) => {
-         console.log(data);
-         //entrer dans la page model
-         if (data.userId == 1) {
-            //recuperer le token dans le localStorage
-            localStorage.setItem("token", data.token);
-            //lien ver la page model
-            location.href = "index.html";
-         }
-
-         //afficher l'erreur
-         else {
-            error.innerText = " Erreur dans l’identifiant ou le mot de passe";
-            document.getElementById("email").value = null;
-            document.getElementById("password").value = null;
-
-
-            //efface le message 
-            function msgdelet() {
-
-               error.innerText = ""
+/**
+ * 
+ * @param {string} eventForm connexion 
+ */
+async function onSubmit(eventForm) {
+   eventForm.preventDefault();
+            //données de l'utilisateur
+            let user = {
+                email: "sophie.bluel@test.tld",
+                password: "S0phie" 
+                // email: email.value,
+                // password: password.value 
             }
-            setTimeout(msgdelet, 50000);
+            //recuperation des données API
+            let response = await fetch("http://localhost:5678/api/users/login", {
+               method: "POST",
+               headers: {
+               "Content-Type": "application/json;charset=utf-8",
+               },
+               body: JSON.stringify(user),
+    });
+    let result = await response.json();
 
+    // si les identifiants sont justes
+    if (response.status === 200) {
+        localStorage.setItem("token", result.token);
+        window.location.replace(`index.html`);
+    // sinon, si les identifiants sont faux
+    } else if (response.status === 404 || response.status === 401) {
+        form.email.value = "";
+        form.password.value = "";
+        alert("Erreur dans l’identifiant ou le mot de passe");
+    }
+};
+form.addEventListener("submit", onSubmit);
 
-         }
-      })
+        
+   
 
-      .catch((err) => console.log(err));
-});
