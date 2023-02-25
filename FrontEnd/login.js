@@ -7,11 +7,11 @@ const password = document.querySelector("#password");
 
 
 /**
- * 
  * @param {string} eventForm connexion 
  */
 //fonction asynchrone = s'exécute en parallèle avec le code principal sans bloquer l'exécution du code. (await)
 async function onSubmit(eventForm) {
+   //preventDefault= pour ne pas que la page se recharge quand l'utilisateur soumet le formulaire
    eventForm.preventDefault();
    //données de l'utilisateur
    let user = {
@@ -25,6 +25,7 @@ async function onSubmit(eventForm) {
          "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(user),
+      //stringify = convertit un objet en une chaîne de caractères
    });
    let result = await response.json();
 
@@ -42,3 +43,10 @@ async function onSubmit(eventForm) {
    }
 };
 form.addEventListener("submit", onSubmit);
+
+
+
+
+
+
+
