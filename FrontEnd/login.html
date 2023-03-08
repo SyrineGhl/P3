@@ -10,46 +10,49 @@
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
       <script src="https://kit.fontawesome.com/f266b52627.js" crossorigin="anonymous"></script>
       <meta name="description" content="">
-      <link rel="stylesheet" href="../FrontEnd/assets/style.css">
-      <script src="../FrontEnd/login.js" defer></script>
+      <link rel="stylesheet" href="./style.css">
+      <script src="./login.js" defer></script>
    </head>
-   <body>
-    <!--HEADER-->
-      <header>
-         <a href="../FrontEnd/index.html">
-            <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-         </a>
-         <!--MENU-->
-         <nav>
-            <ul>
-               <li><a href="../FrontEnd/index.html #project">projets</a></li>
-               <li><a href="../FrontEnd/index.html #contact">contact</a></li>
-               <li><a href="login.js">login</a></li>
-               <li> <i class="fa-brands fa-instagram"></i> </li>
-            </ul>
-         </nav>
-      </header>
-      <!--FORMULAIRE DE CONNEXION-->
-      <main id="contact">
-         <h1 id="login">Log In</h1>
-         <form id="login-form" action="#" method="post">
-            <label id="error"> </label>
-            <label for="email" class="titre">E-mail</label>
-            <input type="email" name="email" id="email" class="login " required>
-            <label for="password" class="titrep">Mot de passe</label>
-            <input type="password" name="password" id="password" class="login " required>
-            <input type="submit" value="Se connecter" id="login-form-submit">
-            <a class="login-form-oublie" href="#">Mot de passe oublié</a>
-         </form>
-      </main>
-      <!--FOOTER-->
-      <footer>
-         <nav>
-            <ul>
-               <li>Mentions Légales</li>
-            </ul>
-            ;
-         </nav>
-      </footer>
-   </body>
+
+<body>
+	<header>
+		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+		<nav>
+			<ul>
+				<li><a href="./index.html ">projets</a></li>
+				<li><a href="./index.html ">contact</a></li>
+				<li><a href="./login.html">login</a></li>
+				<li> <i class="fa-brands fa-instagram"></i> </li>
+			</ul>
+		</nav>
+	</header>
+
+
+	<main id="main-holder">
+		<h1 id="login-header">Connexion</h1>
+
+
+
+		<form id="login-form" action="#" method="post">
+			<label id="error"> </label>
+			<label for="email" class="titre">E-mail</label>
+			<input type="email" name="email" id="email" class="login " required>
+			<label for="password" class="titrep">Mot de passe</label>
+			<input type="password" name="password" id="password" class="login " required>
+			<input type="submit" value="Se connecter" id="login-form-submit">
+			<a class="login-form-oublie" href="#">Mot de passe oublié</a>
+		</form>
+
+	</main>
+
+	<footer>
+		<nav>
+			<ul>
+				<li>Mentions Légales</li>
+			</ul>
+		</nav>
+	</footer>
+
+</body>
+
 </html>

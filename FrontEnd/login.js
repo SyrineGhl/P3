@@ -1,52 +1,55 @@
-//recuperation des elements form 
-const form = document.querySelector("form");
-const btnSubmit = document.querySelector(".btn-fetch");
-const error = document.querySelector(".error");
-const email = document.querySelector("#email");
-const password = document.querySelector("#password");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const error = document.getElementById("error");
+const valid = document.getElementById("login-form-submit");
+const form = document.getElementById("login-form");
 
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-/**
- * @param {string} eventForm connexion 
- */
-//fonction asynchrone = s'exécute en parallèle avec le code principal sans bloquer l'exécution du code. (await)
-async function onSubmit(eventForm) {
-   //preventDefault= pour ne pas que la page se recharge quand l'utilisateur soumet le formulaire
-   eventForm.preventDefault();
-   //données de l'utilisateur
-   let user = {
-      email: form.email.value,
-      password: form.password.value,
-   }
-   // recuperation des données API puis envoie de la requete (post)
-   let response = await fetch("http://localhost:5678/api/users/login", {
-      method: "POST",
-      headers: {
-         "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(user),
-      //stringify = convertit un objet en une chaîne de caractères
-   });
-   let result = await response.json();
-
-   // si les identifiants sont justes
-   if (response.status === 200) {
-      //stokage de données client
-      localStorage.setItem("token", result.token);
-      //redirection vers la page d'accueil
-      window.location.replace(`index.html`);
-      // sinon, si les identifiants sont faux
-   } else if (response.status === 404 || response.status === 401) {
-      form.email.value = "";
-      form.password.value = "";
-      alert("Erreur dans l’identifiant ou le mot de passe");
-   }
-};
-form.addEventListener("submit", onSubmit);
+  //recupere les inputs
+  const information = new FormData(form);
+  const payload = new URLSearchParams(information);
 
 
 
+  fetch("http://localhost:5678/api/users/login", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+    },
+
+    body: payload,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      //entre dans la page model
+      if (data.userId == 1) {
+        //recupre le token dans le localStorage
+        localStorage.setItem("token", data.token);
+        //lien ver la page model
+        location.href = "./index.html";
+      }
+
+      //affiche error
+      else {
+        error.innerText = " Erreur dans l’identifiant ou le mot de passe";
+        document.getElementById("email").value = null;
+        document.getElementById("password").value = null;
 
 
+        //eface le message 
+  function msgdelet(){
+    
+    error.innerText=""
+  }
+  setTimeout(msgdelet ,50000); 
+ 
 
 
+      }
+    })
+
+    .catch((err) => console.log(err));
+});
