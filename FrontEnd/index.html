@@ -15,7 +15,81 @@
 		</head>
 		
 		<body>
-			<!--BANNIERE-->
+			
+			<!--HEADER +NAV -->
+			 <header>      
+				 <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+				 <nav>
+					 <ul>
+						 <li><a href="#portfolio">projets</a></li>
+						 <li><a href="#contact">contact</a></li>
+						 <li><a id="login" href="./login.html">login</a></li>
+						 <li> <i class="fa-brands fa-instagram"></i> </li>
+					 </ul>
+				 </nav>
+		 
+				 
+			 </header>
+			 <main>
+				 <!-- INTRODUCTION // PRESENTATION -->
+				 <div id="introduction">
+					 <figure id="introPhoto">
+						 <img src="./assets/images/sophie-bluel.png" alt="poto de sophie-bluel ">
+					 </figure>
+					 <article id="introArticle">
+						 <h2>Designer d'espace</h2>
+						 <div class="paragraphe ">
+							 <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
+								 livraison finale du chantier.</p>
+							 <p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
+								 couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
+								 chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+							 <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
+								 décorateur(trice)</p>
+						 </div>
+					 </article>
+				 </div>
+				 <!--  PORTFOLIO VIA API-->
+				 <section id="portfolio">
+					 
+					 <div id="portfolio_modifier">
+						 <h2 id="portfolioTitle">Mes Projets</h2>
+		 
+					 </div>
+				  <!--CATEGORIE BOUTON GENEREE EN JS-->
+					 <div id="button">
+						 <button id="buttonAll">Tous</button>
+					 </div>
+					 <div class="gallery" id="gallery">
+					 </div>
+				 </section>
+			   <!-- FORMULAIRE DE CONTACT -->
+				 <section id="contact">
+					 <h2>Contact</h2>
+					 <p>Vous avez un projet ? Discutons-en !</p>
+					 <form action="#" method="post">
+						 <label for="name">Nom</label>
+						 <input type="text" name="name" id="name">
+						 <label for="email">Email</label>
+						 <input type="email" name="email" id="email">
+						 <label for="message">Message</label>
+						 <textarea name="message" id="message" cols="30" rows="10"></textarea>
+						 <input type="submit" value="Envoyer">
+					 </form>
+				 </section>
+			 </main>
+		  <!-- FOOTER -->
+			 <footer>
+				 <nav>
+					 <ul>
+						 <li>Mentions Légales</li>
+					 </ul>
+				 </nav>
+			 </footer>
+
+
+			 
+			 <!--BANNIERE-->
 			 <div id="banniere">
 		 
 			 </div>
@@ -97,77 +171,6 @@
 		 
 		 
 			 </form>
-			<!--HEADER +NAV -->
-			 <header>      
-				 <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-				 <nav>
-					 <ul>
-						 <li><a href="#portfolio">projets</a></li>
-						 <li><a href="#contact">contact</a></li>
-						 <li><a id="login" href="./login.html">login</a></li>
-						 <li> <i class="fa-brands fa-instagram"></i> </li>
-					 </ul>
-				 </nav>
-		 
-				 
-			 </header>
-			 <main>
-				 <!-- INTRODUCTION // PRESENTATION -->
-				 <div id="introduction">
-					 <figure id="introPhoto">
-						 <img src="./assets/images/sophie-bluel.png" alt="poto de sophie-bluel ">
-					 </figure>
-					 <article id="introArticle">
-						 <h2>Designer d'espace</h2>
-						 <div class="paragraphe ">
-							 <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
-								 livraison finale du chantier.</p>
-							 <p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
-								 couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
-								 chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-							 <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
-								 décorateur(trice)</p>
-						 </div>
-					 </article>
-				 </div>
-				 <!--  PORTFOLIO VIA API-->
-				 <section id="portfolio">
-					 
-					 <div id="portfolio_modifier">
-						 <h2 id="portfolioTitle">Mes Projets</h2>
-		 
-					 </div>
-				  <!--CATEGORIE BOUTON GENEREE EN JS-->
-					 <div id="button">
-						 <button id="buttonAll">Tous</button>
-					 </div>
-					 <div class="gallery" id="gallery">
-					 </div>
-				 </section>
-			   <!-- FORMULAIRE DE CONTACT -->
-				 <section id="contact">
-					 <h2>Contact</h2>
-					 <p>Vous avez un projet ? Discutons-en !</p>
-					 <form action="#" method="post">
-						 <label for="name">Nom</label>
-						 <input type="text" name="name" id="name">
-						 <label for="email">Email</label>
-						 <input type="email" name="email" id="email">
-						 <label for="message">Message</label>
-						 <textarea name="message" id="message" cols="30" rows="10"></textarea>
-						 <input type="submit" value="Envoyer">
-					 </form>
-				 </section>
-			 </main>
-		  <!-- FOOTER -->
-			 <footer>
-				 <nav>
-					 <ul>
-						 <li>Mentions Légales</li>
-					 </ul>
-				 </nav>
-			 </footer>
-			 
 		 </body>
  
 	</html>

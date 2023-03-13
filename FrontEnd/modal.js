@@ -48,23 +48,20 @@ function displayModal() {
   document.getElementById("banniere").style.backgroundColor = "black";
 
   // insertion chaine de caractere icone du bouton modifier 
-  const elementModifier = `
-<div>
-<i class="fa-regular fa-pen-to-square"></i>
-<p>Mode édition</p>  </div>`;
+  const elementModifier = createButtonModify("elementModifier");
+
 // afterbegin = inserer apres ouverture du mode edition
   modeEdition.insertAdjacentHTML("afterbegin", elementModifier);
   modeEdition.className = "edition";
-  const modifier = `
-<div id= "modifier">
-<i class="fa-regular fa-pen-to-square"></i>
-<p>modifier</p>  </div>`;
-
-  const modifierModal = `
-<a href ="#modal"></a>
-<div id= "modifModal">
-<i class="fa-regular fa-pen-to-square"></i>
-<p>modifier</p>  </div>`;
+  const modifier = createButtonModify("modifier");
+// creer une fonction qui permet de generer la div avec le pinceau pen
+function createButtonModify(id){
+  return `<div id="${id}">
+  <i class="fa-regular fa-pen-to-square"></i>
+  <p>Mode édition</p>  </div>`;
+}
+  const modifierModal = createButtonModify("modifModal");
+   
 
   document
     .getElementById("portfolioTitle")

@@ -39,7 +39,7 @@ form.addEventListener("submit", function (e) {
         document.getElementById("password").value = null;
 
 
-        //eface le message 
+        //efface le message 
   function msgdelet(){
     
     error.innerText=""
