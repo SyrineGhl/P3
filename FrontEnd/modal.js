@@ -29,6 +29,10 @@ if (localStorage.getItem("token")) {
   modeEdition.type = "button";
 
   modeEdition.innerText = "Mode édition";
+  modeEdition.innerText = "Mode édition";
+  modeEdition.innerHTML =
+    '<i class="fa-regular fa-pen-to-square"></i> Mode édition';
+  modeEdition.className = "edition";
   // personnalisation de la div bannière en mode edition
   document.getElementById("banniere").style.backgroundColor = "black";
 
@@ -64,9 +68,6 @@ if (localStorage.getItem("token")) {
     .insertAdjacentHTML("beforeend", modifier);
 
   displayModal();
-
-
-  
 
   //ETAPE 3.1 Creation modal
   let modal = null;
