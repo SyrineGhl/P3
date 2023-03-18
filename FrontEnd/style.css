@@ -452,6 +452,7 @@ log in
   background-color: black;
   display: flex;
   flex-direction: row;
+  border: none;
 }
 
 .publier {
@@ -746,4 +747,20 @@ height: 52px;
   justify-content: flex-end;
   align-items: flex-start;
   position: relative;
+}
+#modifModal{
+  text-decoration: none;
+  color: #000000;
+
+  border: none;
+  background-color: transparent;
+}
+#Modifier{
+  text-decoration: none;
+  color: #000000;
+
+  margin-top: -51px;
+  margin-right: 33%;
+  border: none;
+  background-color: transparent;
 }
