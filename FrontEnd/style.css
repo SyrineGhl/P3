@@ -535,7 +535,7 @@ log in
   margin: 60px 0px 20px 0px;
 }
 .addPhotoModal,
-.model_suprimer {
+.deleteGaleryModal {
   cursor: pointer;
   font-family: "Syne";
   font-style: normal;
@@ -550,7 +550,7 @@ log in
 margin-bottom: 10px;
 }
 
-.model_suprimer {
+.deleteGaleryModal {
   color: #d65353;
   background-color: white;
   border: none;
@@ -618,7 +618,7 @@ margin-bottom: 10px;
   width: 100px;
 }
 
-.addModal {
+.addModalDownload {
   display: flex;
   flex-direction: column;
   width: 458px;
@@ -773,4 +773,27 @@ height: 52px;
 .fa-regular, .far {
   font-weight: 400;
   margin-right: 7px;
+}
+
+#add {
+  color: #306685;
+  background: #cbd6dc;
+  border-radius: 50px;
+  height: 52px;
+  cursor: pointer;
+  border: none;
+}
+
+.addPhotoModal,.valider {
+  border-radius: 60px;
+  border: 1px #1d6154;
+  width: 179px;
+  height: 36px;
+  cursor: pointer;
+  background-color: #1d6154;
+  color: white;
+}
+.valider {
+  background: #a7a7a7;
+  border-radius: 60px;
 }

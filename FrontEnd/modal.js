@@ -127,6 +127,7 @@ if (localStorage.getItem("token")) {
       closeModal(e);
     }
   });
+ 
 
   // ouverture de la page suivante pour ajouter photo
 
