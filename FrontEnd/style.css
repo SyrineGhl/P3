@@ -755,12 +755,22 @@ height: 52px;
   border: none;
   background-color: transparent;
 }
-#Modifier{
-  text-decoration: none;
-  color: #000000;
 
-  margin-top: -51px;
-  margin-right: 33%;
+#Modifier{
   border: none;
   background-color: transparent;
+}
+
+.modif {
+  display: inline-flex;
+  align-items: center;
+}
+
+.modif i {
+  margin-right: 5px;
+}
+
+.fa-regular, .far {
+  font-weight: 400;
+  margin-right: 7px;
 }

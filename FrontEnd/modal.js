@@ -47,7 +47,7 @@ if (localStorage.getItem("token")) {
   function createButtonModify(id, textBtn = "") {
     return `<button id="${id}${textBtn}">
   <i class="fa-regular fa-pen-to-square"></i>
-  <p>Modifier</p></button>`;
+  <p class="modif">Modifier</p></button>`;
   }
 
   const modifierModal = createButtonModify("modifModal");
