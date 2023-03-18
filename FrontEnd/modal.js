@@ -127,7 +127,6 @@ if (localStorage.getItem("token")) {
       closeModal(e);
     }
   });
- 
 
   // ouverture de la page suivante pour ajouter photo
 
@@ -170,7 +169,7 @@ if (localStorage.getItem("token")) {
   ////FERMER le modal de ajout photo ///
   function closeModalAdd(e) {
     e.preventDefault;
-    const buttonAddPhoto = document.getElementById("buttonAddPhoto");
+    const buttonAddPhoto = document.getElementById("addModal");
     buttonAddPhoto.style.display = "none";
     buttonAddPhoto.setAttribute("aria-hidden", "true");
     buttonAddPhoto?.removeEventListener("click", closeModalAdd);
@@ -214,23 +213,21 @@ if (localStorage.getItem("token")) {
   }
   //telecharger les photos
   function download() {
-    const add = document.getElementById("addImg");
-
-    const imageDownload = "";
-
     const reader = new FileReader();
+  
     reader.addEventListener("load", () => {
-      imageDownload = reader.result;
+      const imageDownload = reader.result;
       const photo = document.getElementById("downloadImg");
       document.getElementById("photoAdd").style.display = null;
-
-      photo.style.backgroundImage = `url(${imageDownload} )`;
+      photo.style.backgroundImage = `url(${imageDownload})`;
       document.getElementById("containerModal").style.display = "none";
     });
+  
     reader.readAsDataURL(this.files[0]);
   }
-
+  
   document.getElementById("addImg").addEventListener("change", download);
+  
 
   // ETAPE 3.2 SUPPRESSION
   //fonction delet = utilisation dune boucle pour parcourir les elements du tableau data
