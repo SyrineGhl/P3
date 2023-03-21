@@ -14,9 +14,9 @@
       <meta name="description" content="">
    </head>
    <body>
-		 <!--BANNIERE-->
-		 <div id="banniere">
-		</div>
+      <!--BANNIERE-->
+      <div id="banniere">
+      </div>
       <!--HEADER +NAV -->
       <header>
          <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
@@ -86,15 +86,14 @@
             </ul>
          </nav>
       </footer>
-     
       <!--MODAL -->
       <aside id="modal" class="modal" aria-hidden="true" style="display:none">
          <div class="modal_trigger"></div>
-         <div class="modal_container js_modal_stop">
+         <div class="modalContainer js_modal_stop">
             <button id="buttonCloseModal">x</button>
             <section class="modalBody">
                <i class="fa-solid fa-arrows-up-down-left-right "></i>
-               <h2 class="model_titre">Galerie photo</h2>
+               <h2 class="titleModalFirst">Galerie photo</h2>
                <div id="modalGallery"></div>
                <div class="button">
                   <button id="buttonAddPhoto" class="buttonAddPhoto">Ajouter une photo</button>
@@ -106,17 +105,19 @@
       <!--PAGE SUIVANTE DU MODAL -->
       <form name="form_ajout" method="post" action="#" id="addModal" class="modal" aria-hidden="true"
          style="display:none" enctype="multipart/form-data">
-         <div class="modal_trigger"></div>
-         <div class="modal_container js_modal_stop">
+				
+         <div class="modalContainer js_modal_stop">
             <button id="btnCloseAddPhoto">x</button>
             <i id="left" class="fa-sharp fa-solid fa-arrow-left"></i>
             <section class="modalBody">
                <h2 class="modalTitle">Ajout photo</h2>
                <div id="model_gallery_ajout">
+
                   <div class="addModalDownload">
                      <div id="photoAdd" style="display:none">
                         <div id="downloadImg"></div>
                      </div>
+										 
                      <div id="containerModal" style="display:contents">
                         <img class="photo" src="./assets/images/photo.PNG" alt="image">
                         <input name="image" type="file" id="addImg" accept="image/png , image/jpg  "

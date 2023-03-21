@@ -1,8 +1,8 @@
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const error = document.getElementById("error");
-const valid = document.getElementById("login-form-submit");
-const form = document.getElementById("login-form");
+const valid = document.getElementById("submitFormLogin");
+const form = document.getElementById("loginForm");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();

@@ -24,11 +24,9 @@ if (localStorage.getItem("token")) {
     });
   }
 
-  //edition
+  //ETAPE 3.1 CREATION DES BOUTONS MODIFIER/MODE EDITION
   const modeEdition = document.createElement("button");
   modeEdition.type = "button";
-
-  modeEdition.innerText = "Mode édition";
   modeEdition.innerText = "Mode édition";
   modeEdition.innerHTML =
     '<i class="fa-regular fa-pen-to-square"></i> Mode édition';
@@ -40,12 +38,10 @@ if (localStorage.getItem("token")) {
   const elementModifier = createButtonModify("Modifier");
 
   // afterbegin = inserer apres ouverture du mode edition
-
-  modeEdition.className = "edition";
   const modifier = createButtonModify("Modifier");
   // creer une fonction qui permet de generer la div avec le pinceau pen
-  function createButtonModify(id, textBtn = "") {
-    return `<button id="${id}${textBtn}">
+  function createButtonModify(id) {
+    return `<button id="${id}">
   <i class="fa-regular fa-pen-to-square"></i>
   <p class="modif">Modifier</p></button>`;
   }
@@ -69,7 +65,7 @@ if (localStorage.getItem("token")) {
 
   displayModal();
 
-  //ETAPE 3.1 Creation modal
+  //CREATION DE LA MODALE
   let modal = null;
 
   function openModal(e) {
@@ -214,7 +210,7 @@ if (localStorage.getItem("token")) {
   //telecharger les photos
   function download() {
     const reader = new FileReader();
-  
+
     reader.addEventListener("load", () => {
       const imageDownload = reader.result;
       const photo = document.getElementById("downloadImg");
@@ -222,12 +218,11 @@ if (localStorage.getItem("token")) {
       photo.style.backgroundImage = `url(${imageDownload})`;
       document.getElementById("containerModal").style.display = "none";
     });
-  
+
     reader.readAsDataURL(this.files[0]);
   }
-  
+
   document.getElementById("addImg").addEventListener("change", download);
-  
 
   // ETAPE 3.2 SUPPRESSION
   //fonction delet = utilisation dune boucle pour parcourir les elements du tableau data
@@ -242,7 +237,7 @@ if (localStorage.getItem("token")) {
             parcourirData <= data.length;
             parcourirData++
           ) {
-            function delet() {
+            function deletAll() {
               //pour acceder à la propriete "id" de l'element data dans la boucle
               data[parcourirData].id;
               //?= permet d'eviter une erreur si valeur du parametre est undefined
@@ -273,7 +268,7 @@ if (localStorage.getItem("token")) {
 
             const id = document.getElementById(`${data[parcourirData]?.id}`);
             if (id) {
-              id.addEventListener("click", delet);
+              id.addEventListener("click", deletAll);
             }
             console.log(localStorage.getItem("id"));
           }
@@ -387,8 +382,7 @@ if (localStorage.getItem("token")) {
                     "la taille de la photo est plus de 4mo  ";
                   photo.value = null;
                   // supression des données quand on ferme
-                  document.getElementById("containerModal").style.display =
-                    null;
+                  document.getElementById("containerModal").style.display =null;
                   document.getElementById("photoAdd").style.display = "none";
                 }
                 deleteWhenClose();
@@ -432,7 +426,7 @@ function deleteWhenClose() {
   const deleteUrlPhoto = document.getElementById("addImg");
   deleteUrlPhoto.value = null;
 
-  //suprime les donnees des category
+  //suprime les donnees des categories
   const category = document.getElementById("categorie");
   category.value = null;
 }
