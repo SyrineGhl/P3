@@ -123,6 +123,7 @@ if (localStorage.getItem("token")) {
       closeModal(e);
     }
   });
+  
 
   // ouverture de la page suivante pour ajouter photo
 
@@ -182,6 +183,15 @@ if (localStorage.getItem("token")) {
   //la fleche de retour
   document.getElementById("left").addEventListener("click", closeModalAdd);
 
+  const closeModalbyClick = document.getElementById("addModal");
+
+// Fermer la fenêtre modale lorsque l'utilisateur clique en dehors de celle-ci
+window.addEventListener("click", function(event) {
+  if (event.target == closeModalbyClick) {
+    closeModalbyClick.style.display = "none";
+  }
+});
+
   //fermer modal avec touche esc
 
   window.addEventListener("keydown", function (e) {
@@ -235,8 +245,7 @@ if (localStorage.getItem("token")) {
           for (
             let parcourirData = 0;
             parcourirData <= data.length;
-            parcourirData++
-          ) {
+            parcourirData++){
             function deletAll() {
               //pour acceder à la propriete "id" de l'element data dans la boucle
               data[parcourirData].id;
@@ -248,8 +257,7 @@ if (localStorage.getItem("token")) {
               //etape = suppression des elements html => stock id du projet dans un tableau et stockage local
               //"b" pour ID afin d'identifier l'element html d'une maniere specifique
               const elementID = document.getElementById(
-                `B${data[parcourirData].id}`
-              );
+                `B${data[parcourirData].id}`);
               //suppression de cet element
               elementID?.remove();
               //"a" pareil que le prefixe b
@@ -394,7 +402,7 @@ if (localStorage.getItem("token")) {
     }
   });
 
-  //bouton = publier les changements
+  //bouton = publier les changements en mode edition
   const btnPublier = document.createElement("button");
   btnPublier.type = "button";
 
