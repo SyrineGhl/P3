@@ -1,150 +1,188 @@
 <!DOCTYPE html>
 <html lang="fr">
-   <head>
-      <meta charset="UTF-8">
-      <title>Sophie Bluel - Architecte d'intérieur</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script src="https://kit.fontawesome.com/a19d3f2310.js" crossorigin="anonymous"></script>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="./style.css">
-      <script src="script.js" defer></script>
-      <script src="./modal.js" defer ></script>
-      <meta name="description" content="">
-   </head>
-   <body>
-      <!--BANNIERE-->
-      <div id="banniere">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/a19d3f2310.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="script.js" defer></script>
+    <script src="./modal.js" defer></script>
+    <meta name="description" content="" />
+  </head>
+  <body>
+    <!--BANNIERE-->
+    <div id="banniere"></div>
+    <!--HEADER +NAV -->
+    <header>
+      <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+      <nav>
+        <ul>
+          <li><a href="#portfolio">projets</a></li>
+          <li><a href="#contact">contact</a></li>
+          <li><a id="login" href="./login.html">login</a></li>
+          <li><i class="fa-brands fa-instagram"></i></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <!-- INTRODUCTION // PRESENTATION -->
+      <div id="introduction">
+        <figure id="introPhoto">
+          <img
+            src="./assets/images/sophie-bluel.png"
+            alt="photo de Sophie Bluel "
+          />
+        </figure>
+        <article id="introArticle">
+          <h2>Designer d'espace</h2>
+          <div class="paragraphe">
+            <p>
+              Je raconte votre histoire, je valorise vos idées. Je vous
+              accompagne de la conception à la livraison finale du chantier.
+            </p>
+            <p>
+              Chaque projet sera étudié en commun, de façon à mettre en valeur
+              les volumes, les matières et les couleurs dans le respect de
+              l’esprit des lieux et le choix adapté des matériaux. Le suivi du
+              chantier sera assuré dans le souci du détail, le respect du
+              planning et du budget.
+            </p>
+            <p>
+              En cas de besoin, une équipe pluridisciplinaire peut-être
+              constituée : architecte DPLG, décorateur(trice)
+            </p>
+          </div>
+        </article>
       </div>
-      <!--HEADER +NAV -->
-      <header>
-         <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-         <nav>
-            <ul>
-               <li><a href="#portfolio">projets</a></li>
-               <li><a href="#contact">contact</a></li>
-               <li><a id="login" href="./login.html">login</a></li>
-               <li> <i class="fa-brands fa-instagram"></i> </li>
-            </ul>
-         </nav>
-      </header>
-      <main>
-         <!-- INTRODUCTION // PRESENTATION -->
-         <div id="introduction">
-            <figure id="introPhoto">
-               <img src="./assets/images/sophie-bluel.png" alt="poto de sophie-bluel ">
-            </figure>
-            <article id="introArticle">
-               <h2>Designer d'espace</h2>
-               <div class="paragraphe ">
-                  <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
-                     livraison finale du chantier.
-                  </p>
-                  <p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
-                     couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
-                     chantier sera assuré dans le souci du détail, le respect du planning et du budget.
-                  </p>
-                  <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
-                     décorateur(trice)
-                  </p>
-               </div>
-            </article>
-         </div>
-         <!--  PORTFOLIO VIA API-->
-         <section id="portfolio">
-            <div id="portfolio_modifier">
-               <h2 id="portfolioTitle">Mes Projets</h2>
-            </div>
-            <!--CATEGORIE BOUTON GENEREE EN JS-->
-            <div id="button">
-               <button id="buttonAll">Tous</button>
-            </div>
-            <div class="gallery" id="gallery">
-            </div>
-         </section>
-         <!-- FORMULAIRE DE CONTACT -->
-         <section id="contact">
-            <h2>Contact</h2>
-            <p>Vous avez un projet ? Discutons-en !</p>
-            <form action="#" method="post">
-               <label for="name">Nom</label>
-               <input type="text" name="name" id="name">
-               <label for="email">Email</label>
-               <input type="email" name="email" id="email">
-               <label for="message">Message</label>
-               <textarea name="message" id="message" cols="30" rows="10"></textarea>
-               <input type="submit" value="Envoyer">
-            </form>
-         </section>
-      </main>
-      <!-- FOOTER -->
-      <footer>
-         <nav>
-            <ul>
-               <li>Mentions Légales</li>
-            </ul>
-         </nav>
-      </footer>
-      <!--MODAL -->
-      <aside id="modal" class="modal" aria-hidden="true" style="display:none">
-         <div class="modal_trigger"></div>
-         <div class="modalContainer js_modal_stop">
-            <button id="buttonCloseModal">x</button>
-            <section class="modalBody">
-               <i class="fa-solid fa-arrows-up-down-left-right "></i>
-               <h2 class="titleModalFirst">Galerie photo</h2>
-               <div id="modalGallery"></div>
-               <div class="button">
-                  <button id="buttonAddPhoto" class="buttonAddPhoto">Ajouter une photo</button>
-                  <button class="deleteGaleryModal">Supprimer la galerie</button>
-               </div>
-            </section>
-         </div>
-      </aside>
-      <!--PAGE SUIVANTE DU MODAL -->
-      <form name="form_ajout" method="post" action="#" id="addModal" class="modal" aria-hidden="true"
-         style="display:none" enctype="multipart/form-data">
-				
-         <div class="modalContainer js_modal_stop">
-            <button id="btnCloseAddPhoto">x</button>
-            <i id="left" class="fa-sharp fa-solid fa-arrow-left"></i>
-            <section class="modalBody">
-               <h2 class="modalTitle">Ajout photo</h2>
-               <div id="model_gallery_ajout">
+      <!--  PORTFOLIO VIA API-->
+      <section id="portfolio">
+        <div id="modifierPortfolio">
+          <h2 id="portfolioTitle">Mes Projets</h2>
+        </div>
+        <!--CATEGORIE BOUTON GENEREE EN JS-->
+        <div id="button">
+          <button id="buttonAll">Tous</button>
+        </div>
+        <div class="gallery" id="gallery"></div>
+      </section>
+      <!-- FORMULAIRE DE CONTACT -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Vous avez un projet ? Discutons-en !</p>
+        <form action="#" method="post">
+          <label for="name">Nom</label>
+          <input type="text" name="name" id="name" />
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <label for="message">Message</label>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          <input type="submit" value="Envoyer" />
+        </form>
+      </section>
+    </main>
+    <!-- FOOTER -->
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
+    <!--MODAL -->
+    <aside id="modal" class="modal" aria-hidden="true" style="display: none">
+      <div class="modalContainer js_modal_stop">
+        <button id="buttonCloseModal">x</button>
+        <section class="modalBody">
+          <i class="fa-solid fa-arrows-up-down-left-right"></i>
+          <h2 class="titleModalFirst">Galerie photo</h2>
+          <div id="modalGallery"></div>
+          <div class="button">
+            <button id="buttonAddPhoto" class="buttonAddPhoto">
+              Ajouter une photo
+            </button>
+            <button class="deleteGaleryModal">Supprimer la galerie</button>
+          </div>
+        </section>
+      </div>
+    </aside>
+    <!--PAGE SUIVANTE DU MODAL -->
+    <form
+      name="form_ajout"
+      method="post"
+      action="#"
+      id="addModal"
+      class="modal"
+      aria-hidden="true"
+      style="display: none"
+      enctype="multipart/form-data"
+    >
+      <div class="modalContainer js_modal_stop">
+        <button id="btnCloseAddPhoto">x</button>
+        <i id="left" class="fa-sharp fa-solid fa-arrow-left"></i>
+        <section class="modalBody">
+          <h2 class="modalTitle">Ajout photo</h2>
+          <div id="modalAddGallery">
+            <div class="addModalDownload">
+              <div id="photoAdd" style="display: none">
+                <div id="downloadImg"></div>
+              </div>
 
-                  <div class="addModalDownload">
-                     <div id="photoAdd" style="display:none">
-                        <div id="downloadImg"></div>
-                     </div>
-										 
-                     <div id="containerModal" style="display:contents">
-                        <img class="photo" src="./assets/images/photo.PNG" alt="image">
-                        <input name="image" type="file" id="addImg" accept="image/png , image/jpg  "
-                           class="input_img_btn">
-                        <button id="add" class="addPhotoModal">+ Ajouter photo</button>
-                        <p>jpg, png : 4mo max</p>
-                     </div>
-                  </div>
-                  <label id="messageError"></label>
-                  <div class="input_modal_ajout">
-                     <label>Titre</label>
-                     <input name="title" id="titleModal" class="titleModal">
-                  </div>
-                  <div class="input_modal_ajout">
-                     <label>Catégorie</label>
-                     <select name="category" id="categorie" class="input_modal_ajout_choix">
-                        <option value="Objets">Objets</option>
-                        <option value="Appartements">Appartements</option>
-                        <option value="Hotels & restaurants">Hotels & restaurants</option>
-                     </select>
-                  </div>
-               </div>
-               <div class="modal_ajout_valider">
-                  <button type="submit" id="btn_valider" class="addPhotoModal valider">Valider</button>
-               </div>
-            </section>
-         </div>
-      </form>
-   </body>
+              <div id="containerModal" style="display: contents">
+                <img
+                  class="photo"
+                  src="./assets/images/photo.PNG"
+                  alt="image"
+                />
+                <input
+                  name="image"
+                  type="file"
+                  id="addImg"
+                  accept="image/png , image/jpg  "
+                  class="buttonImgInput"
+                />
+                <button id="add" class="addPhotoModal">+ Ajouter photo</button>
+                <p>jpg, png : 4mo max</p>
+              </div>
+            </div>
+            <label id="messageError"></label>
+            <div class="inputTitleCategory">
+              <label>Titre</label>
+              <input name="title" id="titleModal" class="titleModal" required />
+              <span id="ErrorTitleSubmit" class="errormsg"></span>
+            </div>
+            <div class="inputTitleCategory">
+              <label>Catégorie</label>
+              <select
+                name="category"
+                id="categorie"
+                class="inputTitleCategoryChoice"
+              >
+                <span id="ErrorCategorySubmit" class="errormsg"></span>
+                <option value="Objets">Objets</option>
+                <option value="Appartements">Appartements</option>
+                <option value="Hotels & restaurants">
+                  Hotels & restaurants
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="buttonValidate">
+            <button type="submit" id="btnValider" class="addPhotoModal valider">
+              Valider
+            </button>
+          </div>
+        </section>
+      </div>
+    </form>
+  </body>
 </html>

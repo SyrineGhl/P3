@@ -123,7 +123,6 @@ if (localStorage.getItem("token")) {
       closeModal(e);
     }
   });
-  
 
   // ouverture de la page suivante pour ajouter photo
 
@@ -185,12 +184,12 @@ if (localStorage.getItem("token")) {
 
   const closeModalbyClick = document.getElementById("addModal");
 
-// Fermer la fenêtre modale lorsque l'utilisateur clique en dehors de celle-ci
-window.addEventListener("click", function(event) {
-  if (event.target == closeModalbyClick) {
-    closeModalbyClick.style.display = "none";
-  }
-});
+  // Fermer la fenêtre modale lorsque l'utilisateur clique en dehors de celle-ci
+  window.addEventListener("click", function (event) {
+    if (event.target == closeModalbyClick) {
+      closeModalbyClick.style.display = "none";
+    }
+  });
 
   //fermer modal avec touche esc
 
@@ -245,7 +244,8 @@ window.addEventListener("click", function(event) {
           for (
             let parcourirData = 0;
             parcourirData <= data.length;
-            parcourirData++){
+            parcourirData++
+          ) {
             function deletAll() {
               //pour acceder à la propriete "id" de l'element data dans la boucle
               data[parcourirData].id;
@@ -257,7 +257,8 @@ window.addEventListener("click", function(event) {
               //etape = suppression des elements html => stock id du projet dans un tableau et stockage local
               //"b" pour ID afin d'identifier l'element html d'une maniere specifique
               const elementID = document.getElementById(
-                `B${data[parcourirData].id}`);
+                `B${data[parcourirData].id}`
+              );
               //suppression de cet element
               elementID?.remove();
               //"a" pareil que le prefixe b
@@ -278,7 +279,7 @@ window.addEventListener("click", function(event) {
             if (id) {
               id.addEventListener("click", deletAll);
             }
-            console.log(localStorage.getItem("id"));
+           
           }
           //identifiant du projet à supprimer via methode delete
           function deleteProject(id) {
@@ -319,7 +320,6 @@ window.addEventListener("click", function(event) {
 
   document.getElementById("addModal").addEventListener("submit", (e) => {
     e.preventDefault();
-
     const photo = document.getElementById("addImg");
     const category = document.getElementById("categorie");
     const title = document.getElementById("titleModal");
@@ -390,7 +390,8 @@ window.addEventListener("click", function(event) {
                     "la taille de la photo est plus de 4mo  ";
                   photo.value = null;
                   // supression des données quand on ferme
-                  document.getElementById("containerModal").style.display =null;
+                  document.getElementById("containerModal").style.display =
+                    null;
                   document.getElementById("photoAdd").style.display = "none";
                 }
                 deleteWhenClose();
@@ -438,3 +439,82 @@ function deleteWhenClose() {
   const category = document.getElementById("categorie");
   category.value = null;
 }
+
+//************** Condition Formulaire POST*********/
+const inputFile = document.getElementById("addImg");
+let titleSelected = false;
+let categorySelected = false;
+let imageSelected = false;
+let iCanSubmit = false;
+
+inputFile.addEventListener("change", () => {
+  const errorImg = document.getElementById("messageError");
+  const image = inputFile.files[0];
+
+  if (image === null || image === undefined) {
+    errorImg.textContent = "Veuillez selectionner une image";
+    imageSelected = false;
+  } else {
+    errorImg.textContent = "";
+    imageSelected = true;
+  }
+});
+
+const editSection = document.querySelector("#addModal");
+
+editSection.addEventListener("input", () => {
+  const editTitle = document.querySelector("#titleModal");
+  const titleError = document.querySelector("#ErrorTitleSubmit");
+  const categoryError = document.querySelector("#ErrorCategorySubmit");
+  const submitForm = document.querySelector(
+    "#addModal > div.modalContainer.js_modal_stop > section.modalBody > div.modal_ajout_valider > button[type=submit]"
+  );
+
+  iCanSubmit = false;
+  titleSelected = false;
+  categorySelected = false;
+
+  submitForm.style.background = "grey";
+
+  let category = document.querySelector("#categorie").value;
+  const title = editTitle.value;
+
+  if (title.length < 1) {
+    titleError.textContent = "Ajoutez un titre";
+    titleSelected = false;
+  } else {
+    titleError.textContent = "";
+    titleSelected = true;
+  }
+
+  if (category === "") {
+    categoryError.textContent = "Choisissez une catégorie";
+    categorySelected = false;
+  } else {
+    categoryError.textContent = "";
+    categorySelected = true;
+  }
+
+  if (titleSelected && categorySelected && imageSelected) {
+    submitForm.style.background = "#1d6154";
+    iCanSubmit = true;
+  }
+});
+
+//******* */
+
+// Récupérez le bouton "Supprimer la galerie"
+const deleteButton = document.querySelector(".deleteGaleryModal");
+
+// Ajoutez un gestionnaire d'événements pour le clic sur le bouton
+deleteButton.addEventListener("click", function () {
+  console.log("Le bouton 'Supprimer la galerie' a ete cliqué !");
+
+  // Récupérez les éléments à supprimer
+  const modalPhotos = document.querySelectorAll("#modalGallery figure");
+  const portfolioPhotos = document.querySelectorAll("#portfolio figure");
+
+  // Parcourez les éléments et supprimez-les un par un
+  modalPhotos.forEach((photo) => photo.remove());
+  portfolioPhotos.forEach((photo) => photo.remove());
+});
