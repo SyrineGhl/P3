@@ -490,17 +490,17 @@ footer nav ul {
   padding-bottom: 50px;
 }
 
-#btnCloseAddPhoto,
-#model_fermer {
-  padding: 8px 10px;
-  border: none;
-  font-size: 20px;
-  color: black;
-  background-color: #ffffff;
-  cursor: pointer;
-  position: absolute;
-  right: 490px;
+#btnCloseAddPhoto {
+ 
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: end;
+    font-size: 20px;
+    border: none;
+    background-color: white;
 }
+
 .modalTitle {
   color: #000000;
   display: flex;
@@ -555,8 +555,8 @@ margin-bottom: 10px;
 .modalBody {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  padding: 0 15%;
+  height: auto !important;
+  padding: 0 7%;
 }
 
 #modalGallery {
@@ -597,11 +597,16 @@ margin-bottom: 10px;
 }
 
 .fa-arrow-left {
-  font-size: 19px;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  align-items: center;
+  top: 27px;
   position: absolute;
-  top: 37px;
-  left:495px;
+  padding-left: 7px;
+  font-size: 15px;
+  border: none;
+  background-color: white;
 }
 .photo {
   background: #e8f1f7;
@@ -616,9 +621,9 @@ margin-bottom: 10px;
   justify-content: space-around;
   align-items: center;
   background-color: rgb(232, 241, 246);
-  height: 67%;
+  height: auto;
   width: 100%;
-  padding: 20px 0;
+
 }
 .add {
   color: #306685;
@@ -694,7 +699,7 @@ margin-bottom: 10px;
   color: transparent;
   left: -1px;
   opacity: 0;
-height: 52px;
+  height: 52px;
   width: 231px;
   cursor: pointer;
 }
@@ -801,29 +806,4 @@ height: 52px;
   margin-bottom: 38px;
 }
 
-/******RESPONSIVE*****/
-@media screen and (min-width:769px) and (max-width: 992px) {
-  #btnCloseAddPhoto, #model_fermer {
-    padding: 8px 10px;
-    border: none;
-    font-size: 20px;
-    color: black;
-    background-color: #ffffff;
-    cursor: pointer;
-    position: absolute;
-    right: 490px;
-}
-}
 
-@media screen and (max-width: 768px) {
-  #btnCloseAddPhoto, #model_fermer {
-    padding: 8px 10px;
-    border: none;
-    font-size: 20px;
-    color: black;
-    background-color: #ffffff;
-    cursor: pointer;
-    position: absolute;
-    left:364px;
-}
-}

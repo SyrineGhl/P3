@@ -1,6 +1,6 @@
-//recuperation du token stockéee dans le navigateur
+// CREATION DU SWITCH LOGIN / LOGOUT
+//donc si token stocké  = creation de ma variable tableauid
 if (localStorage.getItem("token")) {
-  //creation d'un tableau
   let tableauId = [];
   //remplacer le login par logout
   document.getElementById("login").innerText = "logout";
@@ -279,7 +279,6 @@ if (localStorage.getItem("token")) {
             if (id) {
               id.addEventListener("click", deletAll);
             }
-           
           }
           //identifiant du projet à supprimer via methode delete
           function deleteProject(id) {
@@ -501,7 +500,7 @@ editSection.addEventListener("input", () => {
   }
 });
 
-//******* */
+//******* BOUTON POUR SUPPRIMER LA GALERIE**************/
 
 // Récupérez le bouton "Supprimer la galerie"
 const deleteButton = document.querySelector(".deleteGaleryModal");
