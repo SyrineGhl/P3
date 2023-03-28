@@ -47,7 +47,6 @@ form.addEventListener("submit", function (e) {
   setTimeout(msgdelet ,50000); 
  
 
-
       }
     })
 

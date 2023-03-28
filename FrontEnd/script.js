@@ -110,7 +110,7 @@ fetch("http://localhost:5678/api/works").then((res) => {
                         ////MASQUER LES BOUTONS EN MODE EDITION
                         //si tocken present dans stockage local alors bouton masqué
                         if (localStorage.getItem("token")) {
-                           console.log("Bienvenue Sophie");
+                           console.log("Hey ! Welcome in your portfolio Sophie");
                         } else {
                            const button = document.getElementById("button");
                            button.appendChild(displayButton);
