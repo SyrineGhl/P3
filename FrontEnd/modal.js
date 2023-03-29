@@ -65,7 +65,7 @@ if (localStorage.getItem("token")) {
     //insertion apres la photo
     .insertAdjacentHTML("beforeend", modifier);
 
-  //CREATION DE LA MODALE
+  // CREATION DE LA MODALE
   let modal = null;
 
   function openModal(e) {
@@ -115,7 +115,7 @@ if (localStorage.getItem("token")) {
 
     document
       .querySelector("#buttonAddPhoto")
-      .addEventListener("click", openModalPageAdd);
+      .addEventListener("click", openModalPageAdd); // je dois supprimer le contenue de ma modale et ajouter l'ajout photo
 
     //******* BOUTON POUR SUPPRIMER LA GALERIE**************/
 
@@ -162,7 +162,7 @@ if (localStorage.getItem("token")) {
     let modal_gallery_container = document.querySelector(
       ".modal-gallery-container"
     );
-    let add_photo_modal = document.querySelector(".add-photo-modal");
+    let add_photo_modal = document.querySelector(".modal-gallery-container");
 
     modal_gallery_container.innerHTML = "";
     add_photo_modal.innerHTML = "";
@@ -190,13 +190,13 @@ if (localStorage.getItem("token")) {
   //ouvre modal
   function openModalPageAdd(e) {
     e.preventDefault();
-    closeGalleryModal();
-
-    const modal = document.getElementById("addModal");
+    //closeGalleryModal();
+    // je refais pareil que sur la p
+    /**const modal = document.getElementById("addModal");
     modal.style.display = "flex";
-    modal.removeAttribute("aria-hidden");
+    modal.removeAttribute("aria-hidden");*/
     buttonAddPhoto = modal;
-
+    //(fonction utilitaire)
     const createElem = (e) => {
       return document.createElement(e);
     };
@@ -210,19 +210,30 @@ if (localStorage.getItem("token")) {
       return (element.innerText = value);
     };
 
-    let add_photo_modal = document.querySelector(".add-photo-modal");
+    let add_photo_modal = document.querySelector(".modal-gallery-container");
     add_photo_modal.innerHTML = "";
+    // creer element form ici avec les enctype method name... une fois creer à ajouter à add photo modal
+    
+    /*  <form
+    name="form_ajout"
+    method="post"
+    action="#"
+    enctype="multipart/form-data"
+  > */ 
+  // tous les element en dessous faut qu'ils appartiennent à l'element form
+  // ensuite on appendChild tous les element en dessous dans modal gallery container (add_photo_modal)
+  
     let modalTitle = createElem("h2");
     setAttr(modalTitle, "class", "modalTitle");
     setText(modalTitle, "Ajout photo");
     Append(add_photo_modal, modalTitle);
-
+// reecrire correction tout les append et les setAttr et setText => appendChild setAttribute et innerText
     let modalAllGallery = createElem("div");
     setAttr(modalAllGallery, "id", "modalAllGallery");
 
     let addModalDownload = createElem("div");
     setAttr(addModalDownload, "class", "addModalDownload");
-    Append(modalAllGallery, addModalDownload);
+    modalAllGallery.appendChild(addModalDownload);
 
     let photoAdd = createElem("div");
     setAttr(photoAdd, "id", "photoAdd");
