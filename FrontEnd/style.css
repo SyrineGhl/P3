@@ -511,7 +511,7 @@ footer nav ul {
 
 .modalContainer {
   overflow: hidden;
-  height: 610px;
+  height: 632px;
   width: 516px;
   max-width: calc(100vw - 100px);
   background-color: #FFFFFF;
@@ -597,7 +597,7 @@ footer nav ul {
   display: flex;
   flex-direction: column;
   height: auto !important;
-  padding: 0 7%;
+  padding: 0 10%;
 }
 
 #modalGallery {
