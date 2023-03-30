@@ -16,7 +16,6 @@ if (localStorage.getItem("token")) {
       if (res.ok) {
         res.json().then((data) => {
           //je recupere l'element du dom
-          document.getElementById("modalGallery").innerHTML = "";
           //boucle pour chaque photo appelée afin d'afficher les details dans la gallery
           for (let i = 0; i <= data.length - 1; i++) {
             photos(data[i]);
@@ -115,7 +114,7 @@ if (localStorage.getItem("token")) {
 
     document
       .querySelector("#buttonAddPhoto")
-      .addEventListener("click", openModalPageAdd); // je dois supprimer le contenue de ma modale et ajouter l'ajout photo
+      .addEventListener("click", openModalPageAdd);
 
     //******* BOUTON POUR SUPPRIMER LA GALERIE**************/
 
@@ -132,23 +131,14 @@ if (localStorage.getItem("token")) {
         delet();
       }
     });
-    //"?" Veut dire = raccourci pour vérifier si l'élément modal n'est pas nul
-    modal?.addEventListener("click", closeModal);
-    modal
-      //empecher propagation de l'event de clic vers parent
-      .querySelector(".js_modal_stop")
-      .addEventListener("click", (e) => {
-        e.stopPropagation();
-      });
 
     //suppression des projets avant de l'afficher à l'utilisateur
     delet();
   }
 
+  modal = document.getElementById("modal");
+
   document.getElementById("modifModal").addEventListener("click", openModal);
-  //fleche de retour avec id LEFT lorsquelle est click declenche openModal
-  // document.getElementById("left").addEventListener("click", openModal);
-  //ouvrir la modal avec la touche entrée
 
   //fermer modal
   function closeModal(e) {
@@ -162,10 +152,8 @@ if (localStorage.getItem("token")) {
     let modal_gallery_container = document.querySelector(
       ".modal-gallery-container"
     );
-    let add_photo_modal = document.querySelector(".modal-gallery-container");
 
     modal_gallery_container.innerHTML = "";
-    add_photo_modal.innerHTML = "";
   }
 
   //fermer modal avec touche esc
@@ -175,14 +163,15 @@ if (localStorage.getItem("token")) {
     }
   });
 
-  // cacher la modal gallery
-
-  function closeGalleryModal() {
-    const modal = document.getElementById("modal");
-    modal.style.display = "none";
-    const modalAddPhoto = document.getElementById("addModal");
-    modalAddPhoto.style.display = "flex";
-  }
+  document.addEventListener(
+    "click",
+    function (e) {
+      if (e.target.className === "modal") {
+        closeModal(e);
+      }
+    },
+    false
+  );
 
   // ouverture de la page suivante pour ajouter photo
 
@@ -190,160 +179,142 @@ if (localStorage.getItem("token")) {
   //ouvre modal
   function openModalPageAdd(e) {
     e.preventDefault();
-    //closeGalleryModal();
-    // je refais pareil que sur la p
-    /**const modal = document.getElementById("addModal");
-    modal.style.display = "flex";
-    modal.removeAttribute("aria-hidden");*/
+
     buttonAddPhoto = modal;
-    //(fonction utilitaire)
-    const createElem = (e) => {
-      return document.createElement(e);
-    };
-    const Append = (parent, child) => {
-      return parent.appendChild(child);
-    };
-    const setAttr = (element, attr, value) => {
-      return element.setAttribute(attr, value);
-    };
-    const setText = (element, value) => {
-      return (element.innerText = value);
-    };
+
+    console.log("buttonAddPhoto ", buttonAddPhoto);
 
     let add_photo_modal = document.querySelector(".modal-gallery-container");
     add_photo_modal.innerHTML = "";
-    // creer element form ici avec les enctype method name... une fois creer à ajouter à add photo modal
-    
-    /*  <form
-    name="form_ajout"
-    method="post"
-    action="#"
-    enctype="multipart/form-data"
-  > */ 
-  // tous les element en dessous faut qu'ils appartiennent à l'element form
-  // ensuite on appendChild tous les element en dessous dans modal gallery container (add_photo_modal)
-  
-    let modalTitle = createElem("h2");
-    setAttr(modalTitle, "class", "modalTitle");
-    setText(modalTitle, "Ajout photo");
-    Append(add_photo_modal, modalTitle);
-// reecrire correction tout les append et les setAttr et setText => appendChild setAttribute et innerText
-    let modalAllGallery = createElem("div");
-    setAttr(modalAllGallery, "id", "modalAllGallery");
 
-    let addModalDownload = createElem("div");
-    setAttr(addModalDownload, "class", "addModalDownload");
+    let form = document.createElement("form");
+    form.setAttribute("name", "form_ajout");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "#");
+    form.setAttribute("enctype", "multipart/form-data");
+    add_photo_modal.appendChild(form);
+
+    let modalTitle = document.createElement("h2");
+    modalTitle.setAttribute("class", "modalTitle");
+    modalTitle.innerText = "Ajout photo";
+    form.appendChild(modalTitle);
+
+    let modalAllGallery = document.createElement("div");
+    modalAllGallery.setAttribute("id", "modalAllGallery");
+
+    let addModalDownload = document.createElement("div");
+    addModalDownload.setAttribute("class", "addModalDownload");
     modalAllGallery.appendChild(addModalDownload);
 
-    let photoAdd = createElem("div");
-    setAttr(photoAdd, "id", "photoAdd");
-    setAttr(photoAdd, "style", "display:none");
-    Append(addModalDownload, photoAdd);
+    let photoAdd = document.createElement("div");
+    photoAdd.setAttribute("id", "photoAdd");
+    photoAdd.setAttribute("style", "display:none");
+    addModalDownload.appendChild(photoAdd);
 
-    let downloadImg = createElem("div");
-    setAttr(downloadImg, "id", "downloadImg");
-    Append(photoAdd, downloadImg);
+    let downloadImg = document.createElement("div");
+    downloadImg.setAttribute("id", "downloadImg");
+    photoAdd.appendChild(downloadImg);
 
-    let containerModal = createElem("div");
-    setAttr(containerModal, "id", "containerModal");
-    setAttr(containerModal, "style", "display:contents");
-    Append(addModalDownload, containerModal);
+    let containerModal = document.createElement("div");
+    containerModal.setAttribute("id", "containerModal");
+    containerModal.setAttribute("style", "display:contents");
+    addModalDownload.appendChild(containerModal);
 
-    let img = createElem("img");
-    setAttr(img, "class", "photo");
-    setAttr(img, "src", "./assets/images/photo.PNG");
-    setAttr(img, "alt", "image");
-    Append(containerModal, img);
+    let img = document.createElement("img");
+    img.setAttribute("class", "photo");
+    img.setAttribute("src", "./assets/images/photo.PNG");
+    img.setAttribute("alt", "image");
+    containerModal.appendChild(img);
 
-    let inputFile = createElem("input");
-    setAttr(inputFile, "name", "image");
-    setAttr(inputFile, "type", "file");
-    setAttr(inputFile, "id", "addImg");
-    setAttr(inputFile, "accept", "image/png , image/jpg ");
-    setAttr(inputFile, "class", "buttonImgInput");
-    Append(containerModal, inputFile);
+    let inputFile = document.createElement("input");
+    inputFile.setAttribute("name", "image");
+    inputFile.setAttribute("type", "file");
+    inputFile.setAttribute("id", "addImg");
+    inputFile.setAttribute("accept", "image/png , image/jpg ");
+    inputFile.setAttribute("class", "buttonImgInput");
+    containerModal.appendChild(inputFile);
 
-    let addPhotoModal = createElem("button");
-    setAttr(addPhotoModal, "id", "add");
-    setAttr(addPhotoModal, "class", "addPhotoModal");
-    setText(addPhotoModal, "+ Ajouter photo");
-    Append(containerModal, addPhotoModal);
+    let addPhotoModal = document.createElement("button");
+    addPhotoModal.setAttribute("id", "add");
+    addPhotoModal.setAttribute("class", "addPhotoModal");
+    addPhotoModal.innerText = "+ Ajouter photo";
+    containerModal.appendChild(addPhotoModal);
 
-    let p = createElem("p");
-    setText(p, "jpg, png : 4mo max");
-    Append(containerModal, p);
+    let p = document.createElement("p");
+    p.innerText = "jpg, png : 4mo max";
+    containerModal.appendChild(p);
 
-    let messageError = createElem("label");
-    setAttr(messageError, "id", "messageError");
-    Append(modalAllGallery, messageError);
+    let messageError = document.createElement("label");
+    messageError.setAttribute("id", "messageError");
+    modalAllGallery.appendChild(messageError);
 
-    let inputTitleCategory = createElem("div");
-    setAttr(inputTitleCategory, "class", "inputTitleCategory");
-    Append(modalAllGallery, inputTitleCategory);
+    let inputTitleCategory = document.createElement("div");
+    inputTitleCategory.setAttribute("class", "inputTitleCategory");
+    modalAllGallery.appendChild(inputTitleCategory);
 
-    let title = createElem("label");
-    setText(title, "Titre");
-    Append(inputTitleCategory, title);
+    let title = document.createElement("label");
+    title.innerText = "Titre";
+    inputTitleCategory.appendChild(title);
 
-    let titleModal = createElem("input");
-    setAttr(titleModal, "name", "title");
-    setAttr(titleModal, "id", "titleModal");
-    setAttr(titleModal, "class", "titleModal");
-    setAttr(titleModal, "required", "true");
-    Append(inputTitleCategory, titleModal);
+    let titleModal = document.createElement("input");
+    titleModal.setAttribute("name", "title");
+    titleModal.setAttribute("id", "titleModal");
+    titleModal.setAttribute("class", "titleModal");
+    titleModal.setAttribute("required", "true");
+    inputTitleCategory.appendChild(titleModal);
 
-    let ErrorTitleSubmit = createElem("span");
-    setAttr(ErrorTitleSubmit, "id", "ErrorTitleSubmit");
-    setAttr(ErrorTitleSubmit, "class", "errormsg");
-    Append(inputTitleCategory, ErrorTitleSubmit);
+    let ErrorTitleSubmit = document.createElement("span");
+    ErrorTitleSubmit.setAttribute("id", "ErrorTitleSubmit");
+    ErrorTitleSubmit.setAttribute("class", "errormsg");
+    inputTitleCategory.appendChild(ErrorTitleSubmit);
 
     //Creation des categories
-    let _inputTitleCategory = createElem("div");
-    setAttr(_inputTitleCategory, "class", "inputTitleCategory");
-    Append(modalAllGallery, _inputTitleCategory);
+    let _inputTitleCategory = document.createElement("div");
+    _inputTitleCategory.setAttribute("class", "inputTitleCategory");
+    modalAllGallery.appendChild(_inputTitleCategory);
 
-    let categoryLabel = createElem("label");
-    setText(categoryLabel, "Catégorie");
-    Append(_inputTitleCategory, categoryLabel);
+    let categoryLabel = document.createElement("label");
+    categoryLabel.innerText = "Catégorie";
+    _inputTitleCategory.appendChild(categoryLabel);
 
-    let selectCategory = createElem("select");
-    setAttr(selectCategory, "name", "category");
-    setAttr(selectCategory, "id", "categorie");
-    setAttr(selectCategory, "class", "inputTitleCategoryChoice");
-    Append(_inputTitleCategory, selectCategory);
+    let selectCategory = document.createElement("select");
+    selectCategory.setAttribute("name", "category");
+    selectCategory.setAttribute("id", "categorie");
+    selectCategory.setAttribute("class", "inputTitleCategoryChoice");
+    _inputTitleCategory.appendChild(selectCategory);
 
-    let ErrorCategorySubmit = createElem("span");
-    setAttr(ErrorCategorySubmit, "id", "ErrorCategorySubmit");
-    setAttr(ErrorCategorySubmit, "class", "errormsg");
-    Append(selectCategory, ErrorCategorySubmit);
+    let ErrorCategorySubmit = document.createElement("span");
+    ErrorCategorySubmit.setAttribute("id", "ErrorCategorySubmit");
+    ErrorCategorySubmit.setAttribute("class", "errormsg");
+    selectCategory.appendChild(ErrorCategorySubmit);
 
-    let Objets = createElem("option");
-    setAttr(Objets, "value", "Objets");
-    setText(Objets, "Objets");
-    Append(selectCategory, Objets);
+    let Objets = document.createElement("option");
+    Objets.setAttribute("value", "Objets");
+    Objets.innerText = "Objets";
+    selectCategory.appendChild(Objets);
 
-    let Appartements = createElem("option");
-    setAttr(Appartements, "value", "Appartements");
-    setText(Appartements, "Appartements");
-    Append(selectCategory, Appartements);
+    let Appartements = document.createElement("option");
+    Appartements.setAttribute("value", "Appartements");
+    Appartements.innerText = "Appartements";
+    selectCategory.appendChild(Appartements);
 
-    let HotelRes = createElem("option");
-    setAttr(HotelRes, "value", "Hotels & restaurants");
-    setText(HotelRes, "Hotels & restaurants");
-    Append(selectCategory, HotelRes);
+    let HotelRes = document.createElement("option");
+    HotelRes.setAttribute("value", "Hotels & restaurants");
+    HotelRes.innerText = "Hotels & restaurants";
+    selectCategory.appendChild(HotelRes);
 
-    let buttonValidate = createElem("div");
-    setAttr(buttonValidate, "class", "buttonValidate");
-    Append(modalAllGallery, buttonValidate);
+    let buttonValidate = document.createElement("div");
+    buttonValidate.setAttribute("class", "buttonValidate");
+    modalAllGallery.appendChild(buttonValidate);
 
-    let btnValider = createElem("button");
-    setAttr(btnValider, "type", "submit");
-    setAttr(btnValider, "id", "btnValider");
-    setAttr(btnValider, "class", "addPhotoModal valider");
-    setText(btnValider, "Valider");
-    Append(buttonValidate, btnValider);
+    let btnValider = document.createElement("button");
+    btnValider.setAttribute("type", "submit");
+    btnValider.setAttribute("id", "btnValider");
+    btnValider.setAttribute("class", "addPhotoModal valider");
+    btnValider.innerText = "Valider";
+    buttonValidate.appendChild(btnValider);
 
-    Append(add_photo_modal, modalAllGallery);
+    form.appendChild(modalAllGallery);
 
     document.querySelector("#addImg").addEventListener("change", download);
 
@@ -377,6 +348,99 @@ if (localStorage.getItem("token")) {
     //l'affichage de category null
     const category = document.getElementById("categorie");
     category.value = null;
+
+    //Envoi données API
+
+    document
+      .querySelector(".addPhotoModal.valider")
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        const photo = document.getElementById("addImg");
+        const category = document.getElementById("categorie");
+        const title = document.getElementById("titleModal");
+
+        // message d'erreur est d'affiché si le formulaire n'est pas rempli
+        if (photo.value === "" || title.value === "" || category.value === "") {
+          document.getElementById("messageError").innerHTML =
+            "Veuillez remplir tous les champs";
+        } else {
+          document.getElementById("messageError").innerHTML = "";
+
+          fetch("http://localhost:5678/api/categories").then((res) => {
+            console.log(res);
+            if (res.ok) {
+              res.json().then((categorydata) => {
+                for (let i = 0; i <= categorydata.length - 1; i++) {
+                  if (category.value === categorydata[i].name) {
+                    categorydata[i].name = categorydata[i].id;
+                    console.log(categorydata[i].id);
+                    console.log(category.value);
+
+                    const image = document.getElementById("addImg").files[0];
+
+                    let token = localStorage.getItem("token");
+                    console.log(`Bearer  ${token}`);
+                    const titre = document.getElementById("titleModal").value;
+
+                    //Taille de la photo
+                    if (image.size < 4 * 1048576) {
+                      const formData = new FormData();
+                      formData.append("image", image);
+                      formData.append("title", titre);
+                      formData.append("category", categorydata[i].id);
+
+                      document.querySelector("#modal").innerHTML = "";
+
+                      //ajout de new projet à l'api
+                      //donnéesdu projet à ajouter
+                      const newProjectAdd = async (data) => {
+                        try {
+                          const requete = await fetch(
+                            "http://localhost:5678/api/works",
+                            {
+                              method: "POST",
+                              headers: {
+                                Authorization: `Bearer ${token}`,
+                                accept: "application/json",
+                              },
+                              body: data,
+                            }
+                          );
+
+                          //si reponse ok
+                          if (requete.status === 201) {
+                            document.querySelector(".gallery").innerHTML = "";
+                            document.getElementById("model_gallery").innerHTML =
+                              "";
+
+                            //fonction appelée à reafficher display modal
+                          } else {
+                            throw "Un problème est survenu";
+                          }
+                          //en cas d'erreur fonction catch affiche errreur
+                        } catch (e) {
+                          console.log(e);
+                        }
+                      };
+                      newProjectAdd(formData);
+                    } else {
+                      document.getElementById("messageError").innerHTML =
+                        "la taille de la photo est plus de 4mo  ";
+                      photo.value = null;
+                      // supression des données quand on ferme
+                      document.getElementById("containerModal").style.display =
+                        null;
+                      document.getElementById("photoAdd").style.display =
+                        "none";
+                    }
+                    deleteWhenClose();
+                  }
+                }
+              });
+            }
+          });
+        }
+      });
   }
 
   //ouvre modal avec touche entrée
@@ -392,22 +456,20 @@ if (localStorage.getItem("token")) {
 
   // Fermer la modale d'ajout photo
   function closeModalAdd(e) {
-    e.preventDefault;
-    const buttonAddPhoto = document.getElementById("addModal");
+    e.preventDefault();
+    const buttonAddPhoto = document.getElementById("modal");
     buttonAddPhoto.style.display = "none";
     buttonAddPhoto.setAttribute("aria-hidden", "true");
     buttonAddPhoto?.removeEventListener("click", closeModalAdd);
 
-    // suprime les données quand on ferme
-    deleteWhenClose();
-
     //recuperer message d'erreur
-    document.getElementById("messageError").innerHTML = "";
+    const msgErr = document.getElementById("messageError");
+    if (msgErr != null) {
+      msgErr.innerHTML = "";
+    }
   }
-  document
-    .getElementById("btnCloseAddPhoto")
-    .addEventListener("click", closeModalAdd);
-  //la fleche de retour
+
+  // la fleche de retour
   document.getElementById("left").addEventListener("click", closeModalAdd);
 
   const closeModalbyClick = document.getElementById("addModal");
@@ -420,7 +482,6 @@ if (localStorage.getItem("token")) {
   });
 
   //fermer modal avec touche esc
-
   window.addEventListener("keydown", function (e) {
     if (e.key === "Escape" || e.key === "Esc") {
       closeModalAdd(e);
@@ -541,95 +602,6 @@ if (localStorage.getItem("token")) {
     });
   }
 
-  // delet();
-
-  //Envoi données API
-
-  document.getElementById("addModal").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const photo = document.getElementById("addImg");
-    const category = document.getElementById("categorie");
-    const title = document.getElementById("titleModal");
-
-    // message d'errreur est d'affiché si le formulaire est pas rempli
-    if (photo.value === "" || title.value === "" || category.value === "") {
-      document.getElementById("messageError").innerHTML =
-        "Veuillez remplir tous les champs";
-    } else {
-      document.getElementById("messageError").innerHTML = "";
-
-      fetch("http://localhost:5678/api/categories").then((res) => {
-        console.log(res);
-        if (res.ok) {
-          res.json().then((categorydata) => {
-            for (let i = 0; i <= categorydata.length - 1; i++) {
-              if (category.value === categorydata[i].name) {
-                categorydata[i].name = categorydata[i].id;
-                console.log(categorydata[i].id);
-                console.log(category.value);
-
-                const image = document.getElementById("addImg").files[0];
-
-                let token = localStorage.getItem("token");
-                console.log(`Bearer  ${token}`);
-                const titre = document.getElementById("titleModal").value;
-
-                //Taille de la photo
-                if (image.size < 4 * 1048576) {
-                  const formData = new FormData();
-                  formData.append("image", image);
-                  formData.append("title", titre);
-                  formData.append("category", categorydata[i].id);
-
-                  //ajout de new projet à l'api
-                  //donnéesdu projet à ajouter
-                  const newProjectAdd = async (data) => {
-                    try {
-                      const requete = await fetch(
-                        "http://localhost:5678/api/works",
-                        {
-                          method: "POST",
-                          headers: {
-                            Authorization: `Bearer ${token}`,
-                            accept: "application/json",
-                          },
-                          body: data,
-                        }
-                      );
-                      //si reponse ok
-                      if (requete.status === 201) {
-                        document.querySelector(".gallery").innerHTML = "";
-                        document.getElementById("model_gallery").innerHTML = "";
-                        //fonction appelée à reafficher display modal
-                        displayWorks();
-                        fetchWorks();
-                      } else {
-                        throw "Un problème est survenu";
-                      }
-                      //en cas d'erreur fonction catch affiche errreur
-                    } catch (e) {
-                      console.log(e);
-                    }
-                  };
-                  newProjectAdd(formData);
-                } else {
-                  document.getElementById("messageError").innerHTML =
-                    "la taille de la photo est plus de 4mo  ";
-                  photo.value = null;
-                  // supression des données quand on ferme
-                  document.getElementById("containerModal").style.display =
-                    null;
-                  document.getElementById("photoAdd").style.display = "none";
-                }
-                deleteWhenClose();
-              }
-            }
-          });
-        }
-      });
-    }
-  });
-
   //bouton = publier les changements en mode edition
   const btnPublier = document.createElement("button");
   btnPublier.type = "button";
@@ -639,9 +611,7 @@ if (localStorage.getItem("token")) {
   btnPublier.insertAdjacentHTML("beforeend", postChange);
   btnPublier.className = "publier";
 
-  btnPublier.onclick = function () {
-    //la fonction
-  };
+  btnPublier.onclick = function () {};
   const banner = document.getElementById("banniere");
   banner.appendChild(btnPublier);
 }
@@ -650,75 +620,6 @@ document.getElementById("login").addEventListener("click", function () {
   localStorage.clear();
 });
 
-function deleteWhenClose() {
-  // supression des données quand on les ferme
-  //document.getElementById("containerModal").style.display = null;
-  document.getElementById("photoAdd").style.display = "none";
-  //suprime les données des titre
-  const addTitleModal = document.getElementById("titleModal");
-  addTitleModal.value = null;
-
-  //suprime les url des photos
-  const deleteUrlPhoto = document.getElementById("addImg");
-  deleteUrlPhoto.value = null;
-
-  //suprime les donnees des categories
-  const category = document.getElementById("categorie");
-  category.value = null;
-}
-
-const editSection = document.querySelector("#addModal");
-
-editSection.addEventListener("input", () => {
-  const editTitle = document.querySelector("#titleModal");
-  const titleError = document.querySelector("#ErrorTitleSubmit");
-  const categoryError = document.querySelector("#ErrorCategorySubmit");
-  const submitForm = document.querySelector(
-    "#addModal > div.modalContainer.js_modal_stop > section.modalBody > div.modal_ajout_valider > button[type=submit]"
-  );
-
-  iCanSubmit = false;
-  titleSelected = false;
-  categorySelected = false;
-
-  // submitForm.style.background = "grey";
-
-  let category = document.querySelector("#categorie").value;
-  const title = editTitle.value;
-
-  if (title.length < 1) {
-    titleError.textContent = "Ajoutez un titre";
-    titleSelected = false;
-  } else {
-    titleError.textContent = "";
-    titleSelected = true;
-  }
-
-  if (category === "") {
-    categoryError.textContent = "Choisissez une catégorie";
-    categorySelected = false;
-  } else {
-    categoryError.textContent = "";
-    categorySelected = true;
-  }
-
-  if (titleSelected && categorySelected && imageSelected) {
-    submitForm.style.background = "#1d6154";
-    0;
-    iCanSubmit = true;
-  }
-});
-
-document.querySelector(".add-modal").addEventListener("click", (e) => {
-  closeModalAdd(e);
-  openModal(e);
-});
-
 document.querySelector(".arrow-modal").addEventListener("click", (e) => {
-  closeModal(e);
-});
-
-document.querySelector("#btnCloseAddPhoto").addEventListener("click", (e) => {
-  closeModal(e);
-  closeModalAdd(e);
+  openModal(e);
 });

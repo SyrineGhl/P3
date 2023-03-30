@@ -11,8 +11,6 @@ form.addEventListener("submit", function (e) {
   const information = new FormData(form);
   const payload = new URLSearchParams(information);
 
-
-
   fetch("http://localhost:5678/api/users/login", {
     method: "POST",
     headers: {
@@ -38,15 +36,11 @@ form.addEventListener("submit", function (e) {
         document.getElementById("email").value = null;
         document.getElementById("password").value = null;
 
-
-        //efface le message 
-  function msgdelet(){
-    
-    error.innerText=""
-  }
-  setTimeout(msgdelet ,50000); 
- 
-
+        //efface le message
+        function msgdelet() {
+          error.innerText = "";
+        }
+        setTimeout(msgdelet, 50000);
       }
     })
 

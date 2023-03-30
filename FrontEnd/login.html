@@ -1,56 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
-   <head>
-      <meta charset="UTF-8">
-      <title>Sophie Bluel - Architecte d'intérieur</title>
-      <link rel="icon" type="image/x-icon" href="../icons/FAV.png">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-      <script src="https://kit.fontawesome.com/f266b52627.js" crossorigin="anonymous"></script>
-      <meta name="description" content="">
-      <link rel="stylesheet" href="./style.css">
-      <script src="./login.js" defer></script>
-   </head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <link rel="icon" type="image/x-icon" href="../icons/FAV.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/f266b52627.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./login.js" defer></script>
+  </head>
 
-<body>
-	<header>
-		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-		<nav>
-			<ul>
-				<li><a href="./index.html ">projets</a></li>
-				<li><a href="./index.html ">contact</a></li>
-				<li><a href="./login.html">login</a></li>
-				<li> <i class="fa-brands fa-instagram"></i> </li>
-			</ul>
-		</nav>
-	</header>
+  <body>
+    <header>
+      <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+      <nav>
+        <ul>
+          <li><a href="./index.html ">projets</a></li>
+          <li><a href="./index.html ">contact</a></li>
+          <li><a href="./login.html">login</a></li>
+          <li><i class="fa-brands fa-instagram"></i></li>
+        </ul>
+      </nav>
+    </header>
 
+    <main id="loginMain">
+      <h1 id="headerOfLogin">Connexion</h1>
 
-	<main id="loginMain">
-		<h1 id="headerOfLogin">Connexion</h1>
+      <form id="loginForm" action="#" method="post">
+        <label id="error"> </label>
+        <label for="email" class="titleEmail">E-mail</label>
+        <input type="email" name="email" id="email" class="login" required />
+        <label for="password" class="passwordLogin">Mot de passe</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="login"
+          required
+        />
+        <input type="submit" value="Se connecter" id="submitFormLogin" />
+        <a class="passwordForget" href="#">Mot de passe oublié</a>
+      </form>
+    </main>
 
-		<form id="loginForm" action="#" method="post">
-			<label id="error"> </label>
-			<label for="email" class="titleEmail">E-mail</label>
-			<input type="email" name="email" id="email" class="login " required>
-			<label for="password" class="passwordLogin">Mot de passe</label>
-			<input type="password" name="password" id="password" class="login " required>
-			<input type="submit" value="Se connecter" id="submitFormLogin">
-			<a class="passwordForget" href="#">Mot de passe oublié</a>
-		</form>
-
-	</main>
-
-	<footer>
-		<nav>
-			<ul>
-				<li>Mentions Légales</li>
-			</ul>
-		</nav>
-	</footer>
-
-</body>
-
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
 </html>
