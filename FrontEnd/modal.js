@@ -114,7 +114,7 @@ if (localStorage.getItem("token")) {
 
     document
       .querySelector("#buttonAddPhoto")
-      .addEventListener("click", openModalPageAdd);
+      .addEventListener("click", modalForm);
 
     //******* BOUTON POUR SUPPRIMER LA GALERIE**************/
 
@@ -173,11 +173,10 @@ if (localStorage.getItem("token")) {
     false
   );
 
-  // ouverture de la page suivante pour ajouter photo
-
+ 
   let buttonAddPhoto = null;
   //ouvre modal
-  function openModalPageAdd(e) {
+  function modalForm(e) {
     e.preventDefault();
 
     buttonAddPhoto = modal;
