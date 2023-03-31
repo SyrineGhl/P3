@@ -23,7 +23,9 @@ function displayWorks() {
   });
 }
 
-//supprime le projet en envoyant une requete delete au serveur
+/**
+ * SUPPRESSION DU PROJET EN ENVOYANT REQUETE DELETE AU SERVEUR
+ */
 function deleteProject(id) {
   fetch("http://localhost:5678/api/works/" + id, {
     method: "DELETE",
@@ -53,7 +55,9 @@ if (localStorage.getItem("id")) {
   //cle id supprimé du stockage local avec method removeitem
 }
 
-//creation de card html puis insertion dans gallery
+/**
+ * CREATION DES CARD HTML PUIS INSERTION DANS GALLERY
+ */
 function generateWorks(work) {
   const galleryCard = `
     <figure id ="A${work?.id}" >
@@ -66,7 +70,10 @@ function generateWorks(work) {
     .insertAdjacentHTML("beforeend", galleryCard);
 }
 
-//recuperation des données et afficher sur ma page web
+/**
+ * RECUPERATION DES DONNEES POUR NOS CATEGORIES
+ */
+
 fetch("http://localhost:5678/api/works").then((res) => {
   //si reponse ok => res.json extrait donnée de reponse et converti en json
   if (res.ok) {
@@ -74,7 +81,9 @@ fetch("http://localhost:5678/api/works").then((res) => {
       //donc variable est initialisé avec la longueur des données recup
       const categoryButton = data.length;
 
-      //recuperation de toutes les categories depuis l'api avec requete get
+      /**
+       * RECUPERATION DES CATEGORIES VIA API
+       */
       fetch("http://localhost:5678/api/categories").then((res) => {
         if (res.ok) {
           res.json().then((category) => {
@@ -100,10 +109,15 @@ fetch("http://localhost:5678/api/works").then((res) => {
                 }
               };
 
-              //ajout de l'evenement click au bouton tous
+              /**
+               * AJOUT DE L'EVENEMENT SUR LE BOUTON TOUS
+               */
+
               buttonAll.addEventListener("click", displayWorks);
 
-              ////MASQUER LES BOUTONS EN MODE EDITION
+              /**
+               * MASQUER LES BOUTONS EN MODE EDITION
+               */
               //si tocken present dans stockage local alors bouton masqué
               if (localStorage.getItem("token")) {
                 console.log("Hey ! Welcome in your portfolio Sophie");

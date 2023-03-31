@@ -17,7 +17,7 @@ De plus, nous allons créer une page de connexion pour permettre aux utilisateur
     - Installer les dépendances : npm install
     - Puis lancer le serveur Back-end : npm start
 
-Connexion sur la page de connexion
+# Connexion via un compte test pour se logger
 
 email: sophie.bluel@test.tld
 password: S0phie

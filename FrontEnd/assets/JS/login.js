@@ -7,7 +7,9 @@ const form = document.getElementById("loginForm");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  //recupere les inputs
+  /**
+   * RECUPERATION DES INPUT POUR FORMULAIRE DE CONNEXION
+   */
   const information = new FormData(form);
   const payload = new URLSearchParams(information);
 
@@ -28,10 +30,10 @@ form.addEventListener("submit", function (e) {
         localStorage.setItem("token", data.token);
         //lien ver la page model
         location.href = "./index.html";
-      }
-
-      //affiche error
-      else {
+      } else {
+        /**
+         * AFFICHER SI ERREUR
+         */
         error.innerText = " Erreur dans l’identifiant ou le mot de passe";
         document.getElementById("email").value = null;
         document.getElementById("password").value = null;
