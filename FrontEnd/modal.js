@@ -1,9 +1,7 @@
-/**
- * CREATION DU SWITCH LOGIN / LOGOUT
- */
+// CREATION DU SWITCH LOGIN / LOGOUT
+//donc si token stocké  = creation de ma variable tableauid, pour le login logout
 
 if (localStorage.getItem("token")) {
-  //donc si token stocké  = creation de ma variable tableauid, pour le login logout
   let tableauId = [];
   //remplacer le login par logout
   document.getElementById("login").innerText = "logout";
@@ -11,10 +9,8 @@ if (localStorage.getItem("token")) {
   //supression du bouton tous en mode edition
   document.getElementById("button").remove(buttonAll);
 
-  /**
-   * Recuperation des données à partir de mon API
-   */
-
+  //permet de récupérer des données à partir de mon API
+  // puis les afficher dans la galerie d'images du DOM
   function fetchWorks() {
     fetch("http://localhost:5678/api/works").then((res) => {
       if (res.ok) {
@@ -29,10 +25,7 @@ if (localStorage.getItem("token")) {
     });
   }
 
-  /**
-   * CREATION DES BOUTONS MODIFIER/MODE EDITION
-   */
-
+  // CREATION DES BOUTONS MODIFIER/MODE EDITION
   const modeEdition = document.createElement("button");
   modeEdition.type = "button";
   modeEdition.innerText = "Mode édition";
@@ -71,10 +64,7 @@ if (localStorage.getItem("token")) {
     //insertion apres la photo
     .insertAdjacentHTML("beforeend", modifier);
 
-  /**
-   * CREATION DE LA MODALE
-   */
-
+  // CREATION DE LA MODALE
   let modal = null;
 
   function openModal(e) {
@@ -124,15 +114,9 @@ if (localStorage.getItem("token")) {
 
     document
       .querySelector("#buttonAddPhoto")
-      .addEventListener("click", modalForm);
+      .addEventListener("click", openModalPageAdd);
 
-    document.querySelector(".arrow-modal").addEventListener("click", (e) => {
-      openModal(e);
-    });
-
-    /**
-     * BOUTON POUR SUPPRIMER LA GALERIE
-     */
+    //******* BOUTON POUR SUPPRIMER LA GALERIE**************/
 
     // "Alert" de suppression du bouton avec la function confirm cree par js
     buttonDeleteGalleryModal.addEventListener("click", function () {
@@ -156,10 +140,7 @@ if (localStorage.getItem("token")) {
 
   document.getElementById("modifModal").addEventListener("click", openModal);
 
-  /**
-   * PERMET DE FERMER LA MODALE
-   */
-
+  //fermer modal
   function closeModal(e) {
     //prevent default = empeche l'event de se produire
     e.preventDefault();
@@ -171,13 +152,13 @@ if (localStorage.getItem("token")) {
     let modal_gallery_container = document.querySelector(
       ".modal-gallery-container"
     );
+    // let add_photo_modal = document.querySelector(".modal-gallery-container");
 
-    modal_gallery_container.innerHTML = "";
+    //modal_gallery_container.innerHTML = "";
+    window.location.reload();
   }
 
-  /**
-   * POUR FERMER LA MODALE AVEC LA TOUCHE ESC
-   */
+  //fermer modal avec touche esc
   window.addEventListener("keydown", function (e) {
     if (e.key === "Escape" || e.key === "Esc") {
       closeModal(e);
@@ -194,18 +175,16 @@ if (localStorage.getItem("token")) {
     false
   );
 
+  // ouverture de la page suivante pour ajouter photo
+
   let buttonAddPhoto = null;
-
-  /**
-   *
-   * FORMULAIRE DE LA MODALE/ AJOUT PHOTO
-   */
-  function modalForm(e) {
+  //ouvre modal
+  function openModalPageAdd(e) {
     e.preventDefault();
-
     buttonAddPhoto = modal;
 
     console.log("buttonAddPhoto ", buttonAddPhoto);
+    
 
     let add_photo_modal = document.querySelector(".modal-gallery-container");
     add_photo_modal.innerHTML = "";
@@ -222,6 +201,7 @@ if (localStorage.getItem("token")) {
     modalTitle.innerText = "Ajout photo";
     form.appendChild(modalTitle);
 
+   
     let modalAllGallery = document.createElement("div");
     modalAllGallery.setAttribute("id", "modalAllGallery");
 
@@ -291,9 +271,7 @@ if (localStorage.getItem("token")) {
     ErrorTitleSubmit.setAttribute("class", "errormsg");
     inputTitleCategory.appendChild(ErrorTitleSubmit);
 
-    /**
-     * CREATION DES OPTIONS/CATEGORIES
-     */
+    //Creation des categories
     let _inputTitleCategory = document.createElement("div");
     _inputTitleCategory.setAttribute("class", "inputTitleCategory");
     modalAllGallery.appendChild(_inputTitleCategory);
@@ -343,14 +321,6 @@ if (localStorage.getItem("token")) {
 
     document.querySelector("#addImg").addEventListener("change", download);
 
-    /**
-     * CONDITION DU FORMULAIRE
-     */
-    let titleSelected = false;
-    let categorySelected = false;
-    let imageSelected = false;
-    let iCanSubmit = false;
-
     inputFile.addEventListener("change", () => {
       const errorImg = document.getElementById("messageError");
       const image = inputFile.files[0];
@@ -376,9 +346,7 @@ if (localStorage.getItem("token")) {
     const category = document.getElementById("categorie");
     category.value = null;
 
-    /**
-     * ENVOI DES DONNÉES À L'API
-     */
+    //Envoi données API
 
     document
       .querySelector(".addPhotoModal.valider")
@@ -388,7 +356,7 @@ if (localStorage.getItem("token")) {
         const category = document.getElementById("categorie");
         const title = document.getElementById("titleModal");
 
-        // message d'erreur est d'affiché si le formulaire n'est pas rempli
+        // message d'errreur est d'affiché si le formulaire est pas rempli
         if (photo.value === "" || title.value === "" || category.value === "") {
           document.getElementById("messageError").innerHTML =
             "Veuillez remplir tous les champs";
@@ -462,7 +430,6 @@ if (localStorage.getItem("token")) {
                       document.getElementById("photoAdd").style.display =
                         "none";
                     }
-                    deleteWhenClose();
                   }
                 }
               });
@@ -472,9 +439,7 @@ if (localStorage.getItem("token")) {
       });
   }
 
-  /**
-   * OUVRIR LA MODALE AVEC LA TOUCHE ENTREE
-   */
+  //ouvre modal avec touche entrée
   window.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       openModal(e);
@@ -485,10 +450,7 @@ if (localStorage.getItem("token")) {
     e.stopPropagation();
   };
 
-  /**
-   *
-   * FERMER LA MODALE D'AJOUT PHOTO
-   */
+  // Fermer la modale d'ajout photo
   function closeModalAdd(e) {
     e.preventDefault();
     const buttonAddPhoto = document.getElementById("modal");
@@ -503,16 +465,12 @@ if (localStorage.getItem("token")) {
     }
   }
 
-  /**
-   * CLICK SUR LA FLECHE RETOUR
-   */
+  // la fleche de retour
   document.getElementById("left").addEventListener("click", closeModalAdd);
 
   const closeModalbyClick = document.getElementById("addModal");
 
-  /**
-   * FERMETURE DE LA MODALE LORS DU CLICK EN DEHORS DE LA FENETRE
-   */
+  // Fermer la fenêtre modale lorsque l'utilisateur clique en dehors de celle-ci
   window.addEventListener("click", function (event) {
     if (event.target == closeModalbyClick) {
       closeModalbyClick.style.display = "none";
@@ -520,15 +478,14 @@ if (localStorage.getItem("token")) {
   });
 
   //fermer modal avec touche esc
+
   window.addEventListener("keydown", function (e) {
     if (e.key === "Escape" || e.key === "Esc") {
       closeModalAdd(e);
     }
   });
 
-  /**
-   * IMG + ICONE POUBELLE DE LA MODALE
-   */
+  //fonction qui genere un html figure contenant image+ bouton de suppression + icone poubelle
   function photos(works) {
     const modalPhoto = `
       <figure id ="B${works.id}">
@@ -545,11 +502,7 @@ if (localStorage.getItem("token")) {
       .getElementById("modalGallery")
       .insertAdjacentHTML("beforeend", modalPhoto);
   }
-
-  /**
-   * TELECHARGER LES PHOTOS
-   */
-
+  //telecharger les photos
   function download() {
     const reader = new FileReader();
 
@@ -564,9 +517,7 @@ if (localStorage.getItem("token")) {
     reader.readAsDataURL(this.files[0]);
   }
 
-  /**
-   * SUPPRESSION
-   */
+  // SUPPRESSION
   //fonction delet = utilisation dune boucle pour parcourir les elements du tableau data
   function delet() {
     fetch("http://localhost:5678/api/works").then((res) => {
@@ -615,9 +566,7 @@ if (localStorage.getItem("token")) {
               id.addEventListener("click", deletAll);
             }
           }
-          /**
-           * IDENTIFIANT DU PROJET À SUPPRIMER VIA METHODE DELETE
-           */
+          //identifiant du projet à supprimer via methode delete
           function deleteProject(id) {
             fetch("http://localhost:5678/api/works/" + id, {
               method: "DELETE",
@@ -650,9 +599,7 @@ if (localStorage.getItem("token")) {
     });
   }
 
-  /**
-   * BOUTON PUBLIER LES CHANGEMENTS EN MODE EDITION
-   */
+  //bouton = publier les changements en mode edition
   const btnPublier = document.createElement("button");
   btnPublier.type = "button";
 
@@ -661,13 +608,17 @@ if (localStorage.getItem("token")) {
   btnPublier.insertAdjacentHTML("beforeend", postChange);
   btnPublier.className = "publier";
 
-  btnPublier.onclick = function () {};
+  btnPublier.onclick = function () {
+    //la fonction
+  };
   const banner = document.getElementById("banniere");
   banner.appendChild(btnPublier);
 }
-/**
- * SUPPRESSION DES DONNEES STOCKEES DANS LE NAVIGATEUR LORS DU CLICK
- */
+//sortir de la page modal
 document.getElementById("login").addEventListener("click", function () {
   localStorage.clear();
+});
+
+document.querySelector(".arrow-modal").addEventListener("click", (e) => {
+  openModal(e);
 });

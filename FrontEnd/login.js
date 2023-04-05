@@ -7,11 +7,11 @@ const form = document.getElementById("loginForm");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  /**
-   * RECUPERATION DES INPUT POUR FORMULAIRE DE CONNEXION
-   */
+  //recupere les inputs
   const information = new FormData(form);
   const payload = new URLSearchParams(information);
+
+
 
   fetch("http://localhost:5678/api/users/login", {
     method: "POST",
@@ -30,19 +30,23 @@ form.addEventListener("submit", function (e) {
         localStorage.setItem("token", data.token);
         //lien ver la page model
         location.href = "./index.html";
-      } else {
-        /**
-         * AFFICHER SI ERREUR
-         */
+      }
+
+      //affiche error
+      else {
         error.innerText = " Erreur dans l’identifiant ou le mot de passe";
         document.getElementById("email").value = null;
         document.getElementById("password").value = null;
 
-        //efface le message
-        function msgdelet() {
-          error.innerText = "";
-        }
-        setTimeout(msgdelet, 50000);
+
+        //efface le message 
+  function msgdelet(){
+    
+    error.innerText=""
+  }
+  setTimeout(msgdelet ,50000); 
+ 
+
       }
     })
 
